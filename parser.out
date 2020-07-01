@@ -1,0 +1,1216 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> block
+Rule 2     block -> constDecl varDecl FunDecl statement
+Rule 3     constDecl -> CONST constlist PUNTOYCOMA
+Rule 4     constDecl -> vacio
+Rule 5     constlist -> ID ASIGNAR NUMERO
+Rule 6     constlist -> constlist COMA ID ASIGNAR NUMERO
+Rule 7     varDecl -> VAR identList PUNTOYCOMA
+Rule 8     varDecl -> vacio
+Rule 9     identList -> ID
+Rule 10    identList -> identList COMA ID
+Rule 11    FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA
+Rule 12    FunDecl -> vacio
+Rule 13    statement -> ID ACTUAL expr
+Rule 14    statement -> LLAMAR ID
+Rule 15    statement -> RUN statementList FIN
+Rule 16    statement -> SI condition ENTONCES statement
+Rule 17    statement -> MIENTRAS condition HACER statement PUNTOYCOMA
+Rule 18    statement -> vacio
+Rule 19    statementList -> statement
+Rule 20    statementList -> statement PUNTOYCOMA statement
+Rule 21    condition -> PAR expr
+Rule 22    condition -> expr relacion expr
+Rule 23    relacion -> ASIGNAR
+Rule 24    relacion -> DIFERENTE
+Rule 25    relacion -> MENOR
+Rule 26    relacion -> MAYOR
+Rule 27    relacion -> MENORIGUAL
+Rule 28    relacion -> MAYORIGUAL
+Rule 29    expr -> termino
+Rule 30    expr -> addingOperator termino
+Rule 31    expr -> expr addingOperator termino
+Rule 32    termino -> factor
+Rule 33    termino -> termino multiplyingOperator factor
+Rule 34    addingOperator -> MAS
+Rule 35    addingOperator -> MENOS
+Rule 36    multiplyingOperator -> MULT
+Rule 37    multiplyingOperator -> DIVIDIR
+Rule 38    factor -> ID
+Rule 39    factor -> NUMERO
+Rule 40    factor -> LPARENT expr RPARENT
+Rule 41    vacio -> <empty>
+
+Terminals, with rules where they appear
+
+ACTUAL               : 13
+ASIGNAR              : 5 6 23
+COMA                 : 6 10
+CONST                : 3
+DIFERENTE            : 24
+DIVIDIR              : 37
+ENTONCES             : 16
+FIN                  : 15
+FUNCION              : 11
+HACER                : 17
+ID                   : 5 6 9 10 11 13 14 38
+LLAMAR               : 14
+LPARENT              : 40
+MAS                  : 34
+MAYOR                : 26
+MAYORIGUAL           : 28
+MENOR                : 25
+MENORIGUAL           : 27
+MENOS                : 35
+MIENTRAS             : 17
+MULT                 : 36
+NUMERO               : 5 6 39
+PAR                  : 21
+PUNTOYCOMA           : 3 7 11 11 17 20
+RPARENT              : 40
+RUN                  : 15
+SI                   : 16
+VAR                  : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+FunDecl              : 2 11
+addingOperator       : 30 31
+block                : 1 11
+condition            : 16 17
+constDecl            : 2
+constlist            : 3 6
+expr                 : 13 21 22 22 31 40
+factor               : 32 33
+identList            : 7 10
+multiplyingOperator  : 33
+program              : 0
+relacion             : 22
+statement            : 2 16 17 19 20 20
+statementList        : 15
+termino              : 29 30 31 33
+vacio                : 4 8 12 18
+varDecl              : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . block
+    (2) block -> . constDecl varDecl FunDecl statement
+    (3) constDecl -> . CONST constlist PUNTOYCOMA
+    (4) constDecl -> . vacio
+    (41) vacio -> .
+
+    CONST           shift and go to state 4
+    VAR             reduce using rule 41 (vacio -> .)
+    FUNCION         reduce using rule 41 (vacio -> .)
+    ID              reduce using rule 41 (vacio -> .)
+    LLAMAR          reduce using rule 41 (vacio -> .)
+    RUN             reduce using rule 41 (vacio -> .)
+    SI              reduce using rule 41 (vacio -> .)
+    MIENTRAS        reduce using rule 41 (vacio -> .)
+    $end            reduce using rule 41 (vacio -> .)
+
+    program                        shift and go to state 1
+    block                          shift and go to state 2
+    constDecl                      shift and go to state 3
+    vacio                          shift and go to state 5
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> block .
+
+    $end            reduce using rule 1 (program -> block .)
+
+
+state 3
+
+    (2) block -> constDecl . varDecl FunDecl statement
+    (7) varDecl -> . VAR identList PUNTOYCOMA
+    (8) varDecl -> . vacio
+    (41) vacio -> .
+
+    VAR             shift and go to state 7
+    FUNCION         reduce using rule 41 (vacio -> .)
+    ID              reduce using rule 41 (vacio -> .)
+    LLAMAR          reduce using rule 41 (vacio -> .)
+    RUN             reduce using rule 41 (vacio -> .)
+    SI              reduce using rule 41 (vacio -> .)
+    MIENTRAS        reduce using rule 41 (vacio -> .)
+    $end            reduce using rule 41 (vacio -> .)
+    PUNTOYCOMA      reduce using rule 41 (vacio -> .)
+
+    varDecl                        shift and go to state 6
+    vacio                          shift and go to state 8
+
+state 4
+
+    (3) constDecl -> CONST . constlist PUNTOYCOMA
+    (5) constlist -> . ID ASIGNAR NUMERO
+    (6) constlist -> . constlist COMA ID ASIGNAR NUMERO
+
+    ID              shift and go to state 10
+
+    constlist                      shift and go to state 9
+
+state 5
+
+    (4) constDecl -> vacio .
+
+    VAR             reduce using rule 4 (constDecl -> vacio .)
+    FUNCION         reduce using rule 4 (constDecl -> vacio .)
+    ID              reduce using rule 4 (constDecl -> vacio .)
+    LLAMAR          reduce using rule 4 (constDecl -> vacio .)
+    RUN             reduce using rule 4 (constDecl -> vacio .)
+    SI              reduce using rule 4 (constDecl -> vacio .)
+    MIENTRAS        reduce using rule 4 (constDecl -> vacio .)
+    $end            reduce using rule 4 (constDecl -> vacio .)
+    PUNTOYCOMA      reduce using rule 4 (constDecl -> vacio .)
+
+
+state 6
+
+    (2) block -> constDecl varDecl . FunDecl statement
+    (11) FunDecl -> . FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA
+    (12) FunDecl -> . vacio
+    (41) vacio -> .
+
+    FUNCION         reduce using rule 41 (vacio -> .)
+    ID              reduce using rule 41 (vacio -> .)
+    LLAMAR          reduce using rule 41 (vacio -> .)
+    RUN             reduce using rule 41 (vacio -> .)
+    SI              reduce using rule 41 (vacio -> .)
+    MIENTRAS        reduce using rule 41 (vacio -> .)
+    $end            reduce using rule 41 (vacio -> .)
+    PUNTOYCOMA      reduce using rule 41 (vacio -> .)
+
+    FunDecl                        shift and go to state 11
+    vacio                          shift and go to state 12
+
+state 7
+
+    (7) varDecl -> VAR . identList PUNTOYCOMA
+    (9) identList -> . ID
+    (10) identList -> . identList COMA ID
+
+    ID              shift and go to state 14
+
+    identList                      shift and go to state 13
+
+state 8
+
+    (8) varDecl -> vacio .
+
+    FUNCION         reduce using rule 8 (varDecl -> vacio .)
+    ID              reduce using rule 8 (varDecl -> vacio .)
+    LLAMAR          reduce using rule 8 (varDecl -> vacio .)
+    RUN             reduce using rule 8 (varDecl -> vacio .)
+    SI              reduce using rule 8 (varDecl -> vacio .)
+    MIENTRAS        reduce using rule 8 (varDecl -> vacio .)
+    $end            reduce using rule 8 (varDecl -> vacio .)
+    PUNTOYCOMA      reduce using rule 8 (varDecl -> vacio .)
+
+
+state 9
+
+    (3) constDecl -> CONST constlist . PUNTOYCOMA
+    (6) constlist -> constlist . COMA ID ASIGNAR NUMERO
+
+    PUNTOYCOMA      shift and go to state 15
+    COMA            shift and go to state 16
+
+
+state 10
+
+    (5) constlist -> ID . ASIGNAR NUMERO
+
+    ASIGNAR         shift and go to state 17
+
+
+state 11
+
+    (2) block -> constDecl varDecl FunDecl . statement
+    (11) FunDecl -> FunDecl . FUNCION ID PUNTOYCOMA block PUNTOYCOMA
+    (13) statement -> . ID ACTUAL expr
+    (14) statement -> . LLAMAR ID
+    (15) statement -> . RUN statementList FIN
+    (16) statement -> . SI condition ENTONCES statement
+    (17) statement -> . MIENTRAS condition HACER statement PUNTOYCOMA
+    (18) statement -> . vacio
+    (41) vacio -> .
+
+    FUNCION         shift and go to state 19
+    ID              shift and go to state 20
+    LLAMAR          shift and go to state 21
+    RUN             shift and go to state 22
+    SI              shift and go to state 23
+    MIENTRAS        shift and go to state 24
+    $end            reduce using rule 41 (vacio -> .)
+    PUNTOYCOMA      reduce using rule 41 (vacio -> .)
+
+    statement                      shift and go to state 18
+    vacio                          shift and go to state 25
+
+state 12
+
+    (12) FunDecl -> vacio .
+
+    FUNCION         reduce using rule 12 (FunDecl -> vacio .)
+    ID              reduce using rule 12 (FunDecl -> vacio .)
+    LLAMAR          reduce using rule 12 (FunDecl -> vacio .)
+    RUN             reduce using rule 12 (FunDecl -> vacio .)
+    SI              reduce using rule 12 (FunDecl -> vacio .)
+    MIENTRAS        reduce using rule 12 (FunDecl -> vacio .)
+    $end            reduce using rule 12 (FunDecl -> vacio .)
+    PUNTOYCOMA      reduce using rule 12 (FunDecl -> vacio .)
+
+
+state 13
+
+    (7) varDecl -> VAR identList . PUNTOYCOMA
+    (10) identList -> identList . COMA ID
+
+    PUNTOYCOMA      shift and go to state 26
+    COMA            shift and go to state 27
+
+
+state 14
+
+    (9) identList -> ID .
+
+    PUNTOYCOMA      reduce using rule 9 (identList -> ID .)
+    COMA            reduce using rule 9 (identList -> ID .)
+
+
+state 15
+
+    (3) constDecl -> CONST constlist PUNTOYCOMA .
+
+    VAR             reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+    FUNCION         reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+    ID              reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+    LLAMAR          reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+    RUN             reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+    SI              reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+    MIENTRAS        reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+    $end            reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+    PUNTOYCOMA      reduce using rule 3 (constDecl -> CONST constlist PUNTOYCOMA .)
+
+
+state 16
+
+    (6) constlist -> constlist COMA . ID ASIGNAR NUMERO
+
+    ID              shift and go to state 28
+
+
+state 17
+
+    (5) constlist -> ID ASIGNAR . NUMERO
+
+    NUMERO          shift and go to state 29
+
+
+state 18
+
+    (2) block -> constDecl varDecl FunDecl statement .
+
+    $end            reduce using rule 2 (block -> constDecl varDecl FunDecl statement .)
+    PUNTOYCOMA      reduce using rule 2 (block -> constDecl varDecl FunDecl statement .)
+
+
+state 19
+
+    (11) FunDecl -> FunDecl FUNCION . ID PUNTOYCOMA block PUNTOYCOMA
+
+    ID              shift and go to state 30
+
+
+state 20
+
+    (13) statement -> ID . ACTUAL expr
+
+    ACTUAL          shift and go to state 31
+
+
+state 21
+
+    (14) statement -> LLAMAR . ID
+
+    ID              shift and go to state 32
+
+
+state 22
+
+    (15) statement -> RUN . statementList FIN
+    (19) statementList -> . statement
+    (20) statementList -> . statement PUNTOYCOMA statement
+    (13) statement -> . ID ACTUAL expr
+    (14) statement -> . LLAMAR ID
+    (15) statement -> . RUN statementList FIN
+    (16) statement -> . SI condition ENTONCES statement
+    (17) statement -> . MIENTRAS condition HACER statement PUNTOYCOMA
+    (18) statement -> . vacio
+    (41) vacio -> .
+
+    ID              shift and go to state 20
+    LLAMAR          shift and go to state 21
+    RUN             shift and go to state 22
+    SI              shift and go to state 23
+    MIENTRAS        shift and go to state 24
+    PUNTOYCOMA      reduce using rule 41 (vacio -> .)
+    FIN             reduce using rule 41 (vacio -> .)
+
+    statementList                  shift and go to state 33
+    statement                      shift and go to state 34
+    vacio                          shift and go to state 25
+
+state 23
+
+    (16) statement -> SI . condition ENTONCES statement
+    (21) condition -> . PAR expr
+    (22) condition -> . expr relacion expr
+    (29) expr -> . termino
+    (30) expr -> . addingOperator termino
+    (31) expr -> . expr addingOperator termino
+    (32) termino -> . factor
+    (33) termino -> . termino multiplyingOperator factor
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    PAR             shift and go to state 36
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    condition                      shift and go to state 35
+    expr                           shift and go to state 37
+    termino                        shift and go to state 38
+    addingOperator                 shift and go to state 39
+    factor                         shift and go to state 40
+
+state 24
+
+    (17) statement -> MIENTRAS . condition HACER statement PUNTOYCOMA
+    (21) condition -> . PAR expr
+    (22) condition -> . expr relacion expr
+    (29) expr -> . termino
+    (30) expr -> . addingOperator termino
+    (31) expr -> . expr addingOperator termino
+    (32) termino -> . factor
+    (33) termino -> . termino multiplyingOperator factor
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    PAR             shift and go to state 36
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    condition                      shift and go to state 46
+    expr                           shift and go to state 37
+    termino                        shift and go to state 38
+    addingOperator                 shift and go to state 39
+    factor                         shift and go to state 40
+
+state 25
+
+    (18) statement -> vacio .
+
+    $end            reduce using rule 18 (statement -> vacio .)
+    PUNTOYCOMA      reduce using rule 18 (statement -> vacio .)
+    FIN             reduce using rule 18 (statement -> vacio .)
+
+
+state 26
+
+    (7) varDecl -> VAR identList PUNTOYCOMA .
+
+    FUNCION         reduce using rule 7 (varDecl -> VAR identList PUNTOYCOMA .)
+    ID              reduce using rule 7 (varDecl -> VAR identList PUNTOYCOMA .)
+    LLAMAR          reduce using rule 7 (varDecl -> VAR identList PUNTOYCOMA .)
+    RUN             reduce using rule 7 (varDecl -> VAR identList PUNTOYCOMA .)
+    SI              reduce using rule 7 (varDecl -> VAR identList PUNTOYCOMA .)
+    MIENTRAS        reduce using rule 7 (varDecl -> VAR identList PUNTOYCOMA .)
+    $end            reduce using rule 7 (varDecl -> VAR identList PUNTOYCOMA .)
+    PUNTOYCOMA      reduce using rule 7 (varDecl -> VAR identList PUNTOYCOMA .)
+
+
+state 27
+
+    (10) identList -> identList COMA . ID
+
+    ID              shift and go to state 47
+
+
+state 28
+
+    (6) constlist -> constlist COMA ID . ASIGNAR NUMERO
+
+    ASIGNAR         shift and go to state 48
+
+
+state 29
+
+    (5) constlist -> ID ASIGNAR NUMERO .
+
+    PUNTOYCOMA      reduce using rule 5 (constlist -> ID ASIGNAR NUMERO .)
+    COMA            reduce using rule 5 (constlist -> ID ASIGNAR NUMERO .)
+
+
+state 30
+
+    (11) FunDecl -> FunDecl FUNCION ID . PUNTOYCOMA block PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 49
+
+
+state 31
+
+    (13) statement -> ID ACTUAL . expr
+    (29) expr -> . termino
+    (30) expr -> . addingOperator termino
+    (31) expr -> . expr addingOperator termino
+    (32) termino -> . factor
+    (33) termino -> . termino multiplyingOperator factor
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    expr                           shift and go to state 50
+    termino                        shift and go to state 38
+    addingOperator                 shift and go to state 39
+    factor                         shift and go to state 40
+
+state 32
+
+    (14) statement -> LLAMAR ID .
+
+    $end            reduce using rule 14 (statement -> LLAMAR ID .)
+    PUNTOYCOMA      reduce using rule 14 (statement -> LLAMAR ID .)
+    FIN             reduce using rule 14 (statement -> LLAMAR ID .)
+
+
+state 33
+
+    (15) statement -> RUN statementList . FIN
+
+    FIN             shift and go to state 51
+
+
+state 34
+
+    (19) statementList -> statement .
+    (20) statementList -> statement . PUNTOYCOMA statement
+
+    FIN             reduce using rule 19 (statementList -> statement .)
+    PUNTOYCOMA      shift and go to state 52
+
+
+state 35
+
+    (16) statement -> SI condition . ENTONCES statement
+
+    ENTONCES        shift and go to state 53
+
+
+state 36
+
+    (21) condition -> PAR . expr
+    (29) expr -> . termino
+    (30) expr -> . addingOperator termino
+    (31) expr -> . expr addingOperator termino
+    (32) termino -> . factor
+    (33) termino -> . termino multiplyingOperator factor
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    expr                           shift and go to state 54
+    termino                        shift and go to state 38
+    addingOperator                 shift and go to state 39
+    factor                         shift and go to state 40
+
+state 37
+
+    (22) condition -> expr . relacion expr
+    (31) expr -> expr . addingOperator termino
+    (23) relacion -> . ASIGNAR
+    (24) relacion -> . DIFERENTE
+    (25) relacion -> . MENOR
+    (26) relacion -> . MAYOR
+    (27) relacion -> . MENORIGUAL
+    (28) relacion -> . MAYORIGUAL
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+
+    ASIGNAR         shift and go to state 57
+    DIFERENTE       shift and go to state 58
+    MENOR           shift and go to state 59
+    MAYOR           shift and go to state 60
+    MENORIGUAL      shift and go to state 61
+    MAYORIGUAL      shift and go to state 62
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+
+    relacion                       shift and go to state 55
+    addingOperator                 shift and go to state 56
+
+state 38
+
+    (29) expr -> termino .
+    (33) termino -> termino . multiplyingOperator factor
+    (36) multiplyingOperator -> . MULT
+    (37) multiplyingOperator -> . DIVIDIR
+
+    ASIGNAR         reduce using rule 29 (expr -> termino .)
+    DIFERENTE       reduce using rule 29 (expr -> termino .)
+    MENOR           reduce using rule 29 (expr -> termino .)
+    MAYOR           reduce using rule 29 (expr -> termino .)
+    MENORIGUAL      reduce using rule 29 (expr -> termino .)
+    MAYORIGUAL      reduce using rule 29 (expr -> termino .)
+    MAS             reduce using rule 29 (expr -> termino .)
+    MENOS           reduce using rule 29 (expr -> termino .)
+    $end            reduce using rule 29 (expr -> termino .)
+    PUNTOYCOMA      reduce using rule 29 (expr -> termino .)
+    FIN             reduce using rule 29 (expr -> termino .)
+    ENTONCES        reduce using rule 29 (expr -> termino .)
+    HACER           reduce using rule 29 (expr -> termino .)
+    RPARENT         reduce using rule 29 (expr -> termino .)
+    MULT            shift and go to state 64
+    DIVIDIR         shift and go to state 65
+
+    multiplyingOperator            shift and go to state 63
+
+state 39
+
+    (30) expr -> addingOperator . termino
+    (32) termino -> . factor
+    (33) termino -> . termino multiplyingOperator factor
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    termino                        shift and go to state 66
+    factor                         shift and go to state 40
+
+state 40
+
+    (32) termino -> factor .
+
+    MULT            reduce using rule 32 (termino -> factor .)
+    DIVIDIR         reduce using rule 32 (termino -> factor .)
+    ASIGNAR         reduce using rule 32 (termino -> factor .)
+    DIFERENTE       reduce using rule 32 (termino -> factor .)
+    MENOR           reduce using rule 32 (termino -> factor .)
+    MAYOR           reduce using rule 32 (termino -> factor .)
+    MENORIGUAL      reduce using rule 32 (termino -> factor .)
+    MAYORIGUAL      reduce using rule 32 (termino -> factor .)
+    MAS             reduce using rule 32 (termino -> factor .)
+    MENOS           reduce using rule 32 (termino -> factor .)
+    $end            reduce using rule 32 (termino -> factor .)
+    PUNTOYCOMA      reduce using rule 32 (termino -> factor .)
+    FIN             reduce using rule 32 (termino -> factor .)
+    ENTONCES        reduce using rule 32 (termino -> factor .)
+    HACER           reduce using rule 32 (termino -> factor .)
+    RPARENT         reduce using rule 32 (termino -> factor .)
+
+
+state 41
+
+    (34) addingOperator -> MAS .
+
+    ID              reduce using rule 34 (addingOperator -> MAS .)
+    NUMERO          reduce using rule 34 (addingOperator -> MAS .)
+    LPARENT         reduce using rule 34 (addingOperator -> MAS .)
+
+
+state 42
+
+    (35) addingOperator -> MENOS .
+
+    ID              reduce using rule 35 (addingOperator -> MENOS .)
+    NUMERO          reduce using rule 35 (addingOperator -> MENOS .)
+    LPARENT         reduce using rule 35 (addingOperator -> MENOS .)
+
+
+state 43
+
+    (38) factor -> ID .
+
+    MULT            reduce using rule 38 (factor -> ID .)
+    DIVIDIR         reduce using rule 38 (factor -> ID .)
+    ASIGNAR         reduce using rule 38 (factor -> ID .)
+    DIFERENTE       reduce using rule 38 (factor -> ID .)
+    MENOR           reduce using rule 38 (factor -> ID .)
+    MAYOR           reduce using rule 38 (factor -> ID .)
+    MENORIGUAL      reduce using rule 38 (factor -> ID .)
+    MAYORIGUAL      reduce using rule 38 (factor -> ID .)
+    MAS             reduce using rule 38 (factor -> ID .)
+    MENOS           reduce using rule 38 (factor -> ID .)
+    $end            reduce using rule 38 (factor -> ID .)
+    PUNTOYCOMA      reduce using rule 38 (factor -> ID .)
+    FIN             reduce using rule 38 (factor -> ID .)
+    ENTONCES        reduce using rule 38 (factor -> ID .)
+    HACER           reduce using rule 38 (factor -> ID .)
+    RPARENT         reduce using rule 38 (factor -> ID .)
+
+
+state 44
+
+    (39) factor -> NUMERO .
+
+    MULT            reduce using rule 39 (factor -> NUMERO .)
+    DIVIDIR         reduce using rule 39 (factor -> NUMERO .)
+    ASIGNAR         reduce using rule 39 (factor -> NUMERO .)
+    DIFERENTE       reduce using rule 39 (factor -> NUMERO .)
+    MENOR           reduce using rule 39 (factor -> NUMERO .)
+    MAYOR           reduce using rule 39 (factor -> NUMERO .)
+    MENORIGUAL      reduce using rule 39 (factor -> NUMERO .)
+    MAYORIGUAL      reduce using rule 39 (factor -> NUMERO .)
+    MAS             reduce using rule 39 (factor -> NUMERO .)
+    MENOS           reduce using rule 39 (factor -> NUMERO .)
+    $end            reduce using rule 39 (factor -> NUMERO .)
+    PUNTOYCOMA      reduce using rule 39 (factor -> NUMERO .)
+    FIN             reduce using rule 39 (factor -> NUMERO .)
+    ENTONCES        reduce using rule 39 (factor -> NUMERO .)
+    HACER           reduce using rule 39 (factor -> NUMERO .)
+    RPARENT         reduce using rule 39 (factor -> NUMERO .)
+
+
+state 45
+
+    (40) factor -> LPARENT . expr RPARENT
+    (29) expr -> . termino
+    (30) expr -> . addingOperator termino
+    (31) expr -> . expr addingOperator termino
+    (32) termino -> . factor
+    (33) termino -> . termino multiplyingOperator factor
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    expr                           shift and go to state 67
+    termino                        shift and go to state 38
+    addingOperator                 shift and go to state 39
+    factor                         shift and go to state 40
+
+state 46
+
+    (17) statement -> MIENTRAS condition . HACER statement PUNTOYCOMA
+
+    HACER           shift and go to state 68
+
+
+state 47
+
+    (10) identList -> identList COMA ID .
+
+    PUNTOYCOMA      reduce using rule 10 (identList -> identList COMA ID .)
+    COMA            reduce using rule 10 (identList -> identList COMA ID .)
+
+
+state 48
+
+    (6) constlist -> constlist COMA ID ASIGNAR . NUMERO
+
+    NUMERO          shift and go to state 69
+
+
+state 49
+
+    (11) FunDecl -> FunDecl FUNCION ID PUNTOYCOMA . block PUNTOYCOMA
+    (2) block -> . constDecl varDecl FunDecl statement
+    (3) constDecl -> . CONST constlist PUNTOYCOMA
+    (4) constDecl -> . vacio
+    (41) vacio -> .
+
+    CONST           shift and go to state 4
+    VAR             reduce using rule 41 (vacio -> .)
+    FUNCION         reduce using rule 41 (vacio -> .)
+    ID              reduce using rule 41 (vacio -> .)
+    LLAMAR          reduce using rule 41 (vacio -> .)
+    RUN             reduce using rule 41 (vacio -> .)
+    SI              reduce using rule 41 (vacio -> .)
+    MIENTRAS        reduce using rule 41 (vacio -> .)
+    PUNTOYCOMA      reduce using rule 41 (vacio -> .)
+
+    block                          shift and go to state 70
+    constDecl                      shift and go to state 3
+    vacio                          shift and go to state 5
+
+state 50
+
+    (13) statement -> ID ACTUAL expr .
+    (31) expr -> expr . addingOperator termino
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+
+    $end            reduce using rule 13 (statement -> ID ACTUAL expr .)
+    PUNTOYCOMA      reduce using rule 13 (statement -> ID ACTUAL expr .)
+    FIN             reduce using rule 13 (statement -> ID ACTUAL expr .)
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+
+    addingOperator                 shift and go to state 56
+
+state 51
+
+    (15) statement -> RUN statementList FIN .
+
+    $end            reduce using rule 15 (statement -> RUN statementList FIN .)
+    PUNTOYCOMA      reduce using rule 15 (statement -> RUN statementList FIN .)
+    FIN             reduce using rule 15 (statement -> RUN statementList FIN .)
+
+
+state 52
+
+    (20) statementList -> statement PUNTOYCOMA . statement
+    (13) statement -> . ID ACTUAL expr
+    (14) statement -> . LLAMAR ID
+    (15) statement -> . RUN statementList FIN
+    (16) statement -> . SI condition ENTONCES statement
+    (17) statement -> . MIENTRAS condition HACER statement PUNTOYCOMA
+    (18) statement -> . vacio
+    (41) vacio -> .
+
+    ID              shift and go to state 20
+    LLAMAR          shift and go to state 21
+    RUN             shift and go to state 22
+    SI              shift and go to state 23
+    MIENTRAS        shift and go to state 24
+    FIN             reduce using rule 41 (vacio -> .)
+
+    statement                      shift and go to state 71
+    vacio                          shift and go to state 25
+
+state 53
+
+    (16) statement -> SI condition ENTONCES . statement
+    (13) statement -> . ID ACTUAL expr
+    (14) statement -> . LLAMAR ID
+    (15) statement -> . RUN statementList FIN
+    (16) statement -> . SI condition ENTONCES statement
+    (17) statement -> . MIENTRAS condition HACER statement PUNTOYCOMA
+    (18) statement -> . vacio
+    (41) vacio -> .
+
+    ID              shift and go to state 20
+    LLAMAR          shift and go to state 21
+    RUN             shift and go to state 22
+    SI              shift and go to state 23
+    MIENTRAS        shift and go to state 24
+    $end            reduce using rule 41 (vacio -> .)
+    PUNTOYCOMA      reduce using rule 41 (vacio -> .)
+    FIN             reduce using rule 41 (vacio -> .)
+
+    statement                      shift and go to state 72
+    vacio                          shift and go to state 25
+
+state 54
+
+    (21) condition -> PAR expr .
+    (31) expr -> expr . addingOperator termino
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+
+    ENTONCES        reduce using rule 21 (condition -> PAR expr .)
+    HACER           reduce using rule 21 (condition -> PAR expr .)
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+
+    addingOperator                 shift and go to state 56
+
+state 55
+
+    (22) condition -> expr relacion . expr
+    (29) expr -> . termino
+    (30) expr -> . addingOperator termino
+    (31) expr -> . expr addingOperator termino
+    (32) termino -> . factor
+    (33) termino -> . termino multiplyingOperator factor
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    expr                           shift and go to state 73
+    termino                        shift and go to state 38
+    addingOperator                 shift and go to state 39
+    factor                         shift and go to state 40
+
+state 56
+
+    (31) expr -> expr addingOperator . termino
+    (32) termino -> . factor
+    (33) termino -> . termino multiplyingOperator factor
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    termino                        shift and go to state 74
+    factor                         shift and go to state 40
+
+state 57
+
+    (23) relacion -> ASIGNAR .
+
+    MAS             reduce using rule 23 (relacion -> ASIGNAR .)
+    MENOS           reduce using rule 23 (relacion -> ASIGNAR .)
+    ID              reduce using rule 23 (relacion -> ASIGNAR .)
+    NUMERO          reduce using rule 23 (relacion -> ASIGNAR .)
+    LPARENT         reduce using rule 23 (relacion -> ASIGNAR .)
+
+
+state 58
+
+    (24) relacion -> DIFERENTE .
+
+    MAS             reduce using rule 24 (relacion -> DIFERENTE .)
+    MENOS           reduce using rule 24 (relacion -> DIFERENTE .)
+    ID              reduce using rule 24 (relacion -> DIFERENTE .)
+    NUMERO          reduce using rule 24 (relacion -> DIFERENTE .)
+    LPARENT         reduce using rule 24 (relacion -> DIFERENTE .)
+
+
+state 59
+
+    (25) relacion -> MENOR .
+
+    MAS             reduce using rule 25 (relacion -> MENOR .)
+    MENOS           reduce using rule 25 (relacion -> MENOR .)
+    ID              reduce using rule 25 (relacion -> MENOR .)
+    NUMERO          reduce using rule 25 (relacion -> MENOR .)
+    LPARENT         reduce using rule 25 (relacion -> MENOR .)
+
+
+state 60
+
+    (26) relacion -> MAYOR .
+
+    MAS             reduce using rule 26 (relacion -> MAYOR .)
+    MENOS           reduce using rule 26 (relacion -> MAYOR .)
+    ID              reduce using rule 26 (relacion -> MAYOR .)
+    NUMERO          reduce using rule 26 (relacion -> MAYOR .)
+    LPARENT         reduce using rule 26 (relacion -> MAYOR .)
+
+
+state 61
+
+    (27) relacion -> MENORIGUAL .
+
+    MAS             reduce using rule 27 (relacion -> MENORIGUAL .)
+    MENOS           reduce using rule 27 (relacion -> MENORIGUAL .)
+    ID              reduce using rule 27 (relacion -> MENORIGUAL .)
+    NUMERO          reduce using rule 27 (relacion -> MENORIGUAL .)
+    LPARENT         reduce using rule 27 (relacion -> MENORIGUAL .)
+
+
+state 62
+
+    (28) relacion -> MAYORIGUAL .
+
+    MAS             reduce using rule 28 (relacion -> MAYORIGUAL .)
+    MENOS           reduce using rule 28 (relacion -> MAYORIGUAL .)
+    ID              reduce using rule 28 (relacion -> MAYORIGUAL .)
+    NUMERO          reduce using rule 28 (relacion -> MAYORIGUAL .)
+    LPARENT         reduce using rule 28 (relacion -> MAYORIGUAL .)
+
+
+state 63
+
+    (33) termino -> termino multiplyingOperator . factor
+    (38) factor -> . ID
+    (39) factor -> . NUMERO
+    (40) factor -> . LPARENT expr RPARENT
+
+    ID              shift and go to state 43
+    NUMERO          shift and go to state 44
+    LPARENT         shift and go to state 45
+
+    factor                         shift and go to state 75
+
+state 64
+
+    (36) multiplyingOperator -> MULT .
+
+    ID              reduce using rule 36 (multiplyingOperator -> MULT .)
+    NUMERO          reduce using rule 36 (multiplyingOperator -> MULT .)
+    LPARENT         reduce using rule 36 (multiplyingOperator -> MULT .)
+
+
+state 65
+
+    (37) multiplyingOperator -> DIVIDIR .
+
+    ID              reduce using rule 37 (multiplyingOperator -> DIVIDIR .)
+    NUMERO          reduce using rule 37 (multiplyingOperator -> DIVIDIR .)
+    LPARENT         reduce using rule 37 (multiplyingOperator -> DIVIDIR .)
+
+
+state 66
+
+    (30) expr -> addingOperator termino .
+    (33) termino -> termino . multiplyingOperator factor
+    (36) multiplyingOperator -> . MULT
+    (37) multiplyingOperator -> . DIVIDIR
+
+    ASIGNAR         reduce using rule 30 (expr -> addingOperator termino .)
+    DIFERENTE       reduce using rule 30 (expr -> addingOperator termino .)
+    MENOR           reduce using rule 30 (expr -> addingOperator termino .)
+    MAYOR           reduce using rule 30 (expr -> addingOperator termino .)
+    MENORIGUAL      reduce using rule 30 (expr -> addingOperator termino .)
+    MAYORIGUAL      reduce using rule 30 (expr -> addingOperator termino .)
+    MAS             reduce using rule 30 (expr -> addingOperator termino .)
+    MENOS           reduce using rule 30 (expr -> addingOperator termino .)
+    $end            reduce using rule 30 (expr -> addingOperator termino .)
+    PUNTOYCOMA      reduce using rule 30 (expr -> addingOperator termino .)
+    FIN             reduce using rule 30 (expr -> addingOperator termino .)
+    ENTONCES        reduce using rule 30 (expr -> addingOperator termino .)
+    HACER           reduce using rule 30 (expr -> addingOperator termino .)
+    RPARENT         reduce using rule 30 (expr -> addingOperator termino .)
+    MULT            shift and go to state 64
+    DIVIDIR         shift and go to state 65
+
+    multiplyingOperator            shift and go to state 63
+
+state 67
+
+    (40) factor -> LPARENT expr . RPARENT
+    (31) expr -> expr . addingOperator termino
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+
+    RPARENT         shift and go to state 76
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+
+    addingOperator                 shift and go to state 56
+
+state 68
+
+    (17) statement -> MIENTRAS condition HACER . statement PUNTOYCOMA
+    (13) statement -> . ID ACTUAL expr
+    (14) statement -> . LLAMAR ID
+    (15) statement -> . RUN statementList FIN
+    (16) statement -> . SI condition ENTONCES statement
+    (17) statement -> . MIENTRAS condition HACER statement PUNTOYCOMA
+    (18) statement -> . vacio
+    (41) vacio -> .
+
+    ID              shift and go to state 20
+    LLAMAR          shift and go to state 21
+    RUN             shift and go to state 22
+    SI              shift and go to state 23
+    MIENTRAS        shift and go to state 24
+    PUNTOYCOMA      reduce using rule 41 (vacio -> .)
+
+    statement                      shift and go to state 77
+    vacio                          shift and go to state 25
+
+state 69
+
+    (6) constlist -> constlist COMA ID ASIGNAR NUMERO .
+
+    PUNTOYCOMA      reduce using rule 6 (constlist -> constlist COMA ID ASIGNAR NUMERO .)
+    COMA            reduce using rule 6 (constlist -> constlist COMA ID ASIGNAR NUMERO .)
+
+
+state 70
+
+    (11) FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 78
+
+
+state 71
+
+    (20) statementList -> statement PUNTOYCOMA statement .
+
+    FIN             reduce using rule 20 (statementList -> statement PUNTOYCOMA statement .)
+
+
+state 72
+
+    (16) statement -> SI condition ENTONCES statement .
+
+    $end            reduce using rule 16 (statement -> SI condition ENTONCES statement .)
+    PUNTOYCOMA      reduce using rule 16 (statement -> SI condition ENTONCES statement .)
+    FIN             reduce using rule 16 (statement -> SI condition ENTONCES statement .)
+
+
+state 73
+
+    (22) condition -> expr relacion expr .
+    (31) expr -> expr . addingOperator termino
+    (34) addingOperator -> . MAS
+    (35) addingOperator -> . MENOS
+
+    ENTONCES        reduce using rule 22 (condition -> expr relacion expr .)
+    HACER           reduce using rule 22 (condition -> expr relacion expr .)
+    MAS             shift and go to state 41
+    MENOS           shift and go to state 42
+
+    addingOperator                 shift and go to state 56
+
+state 74
+
+    (31) expr -> expr addingOperator termino .
+    (33) termino -> termino . multiplyingOperator factor
+    (36) multiplyingOperator -> . MULT
+    (37) multiplyingOperator -> . DIVIDIR
+
+    ASIGNAR         reduce using rule 31 (expr -> expr addingOperator termino .)
+    DIFERENTE       reduce using rule 31 (expr -> expr addingOperator termino .)
+    MENOR           reduce using rule 31 (expr -> expr addingOperator termino .)
+    MAYOR           reduce using rule 31 (expr -> expr addingOperator termino .)
+    MENORIGUAL      reduce using rule 31 (expr -> expr addingOperator termino .)
+    MAYORIGUAL      reduce using rule 31 (expr -> expr addingOperator termino .)
+    MAS             reduce using rule 31 (expr -> expr addingOperator termino .)
+    MENOS           reduce using rule 31 (expr -> expr addingOperator termino .)
+    $end            reduce using rule 31 (expr -> expr addingOperator termino .)
+    PUNTOYCOMA      reduce using rule 31 (expr -> expr addingOperator termino .)
+    FIN             reduce using rule 31 (expr -> expr addingOperator termino .)
+    ENTONCES        reduce using rule 31 (expr -> expr addingOperator termino .)
+    HACER           reduce using rule 31 (expr -> expr addingOperator termino .)
+    RPARENT         reduce using rule 31 (expr -> expr addingOperator termino .)
+    MULT            shift and go to state 64
+    DIVIDIR         shift and go to state 65
+
+    multiplyingOperator            shift and go to state 63
+
+state 75
+
+    (33) termino -> termino multiplyingOperator factor .
+
+    MULT            reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    DIVIDIR         reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    ASIGNAR         reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    DIFERENTE       reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    MENOR           reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    MAYOR           reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    MENORIGUAL      reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    MAYORIGUAL      reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    MAS             reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    MENOS           reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    $end            reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    PUNTOYCOMA      reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    FIN             reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    ENTONCES        reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    HACER           reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+    RPARENT         reduce using rule 33 (termino -> termino multiplyingOperator factor .)
+
+
+state 76
+
+    (40) factor -> LPARENT expr RPARENT .
+
+    MULT            reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    DIVIDIR         reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    ASIGNAR         reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    DIFERENTE       reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    MENOR           reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    MAYOR           reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    MENORIGUAL      reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    MAYORIGUAL      reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    MAS             reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    MENOS           reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    $end            reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    PUNTOYCOMA      reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    FIN             reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    ENTONCES        reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    HACER           reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+    RPARENT         reduce using rule 40 (factor -> LPARENT expr RPARENT .)
+
+
+state 77
+
+    (17) statement -> MIENTRAS condition HACER statement . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 79
+
+
+state 78
+
+    (11) FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .
+
+    FUNCION         reduce using rule 11 (FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .)
+    ID              reduce using rule 11 (FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .)
+    LLAMAR          reduce using rule 11 (FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .)
+    RUN             reduce using rule 11 (FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .)
+    SI              reduce using rule 11 (FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .)
+    MIENTRAS        reduce using rule 11 (FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .)
+    $end            reduce using rule 11 (FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .)
+    PUNTOYCOMA      reduce using rule 11 (FunDecl -> FunDecl FUNCION ID PUNTOYCOMA block PUNTOYCOMA .)
+
+
+state 79
+
+    (17) statement -> MIENTRAS condition HACER statement PUNTOYCOMA .
+
+    $end            reduce using rule 17 (statement -> MIENTRAS condition HACER statement PUNTOYCOMA .)
+    PUNTOYCOMA      reduce using rule 17 (statement -> MIENTRAS condition HACER statement PUNTOYCOMA .)
+    FIN             reduce using rule 17 (statement -> MIENTRAS condition HACER statement PUNTOYCOMA .)
+
