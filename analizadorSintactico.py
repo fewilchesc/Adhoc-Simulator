@@ -353,7 +353,9 @@ def p_vacio(p):
 	pass
 
 def p_error(p):
-	archi1=open("datos.txt","a",encoding="utf-8") 
+	archi1=open("datos.txt","a",encoding="utf-8")
+	if p == 'None':
+		archi1.write("Sintax error "+str(p)) 
 	archi1.write("Sintax error\n")
 	archi1.close()
 	print("Sintax error",p)
